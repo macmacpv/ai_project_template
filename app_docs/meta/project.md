@@ -1,7 +1,7 @@
 # Project Profile
 
 ## 1. Project Owner
-*   **Name:** [Your Name]
+*   **Name:** RepoRevolution | MineCop
 *   **Role:** Product Owner / Lead Developer
 *   **Technical Background:**
     *   [Briefly describe your experience, preferred stack, and any constraints]
