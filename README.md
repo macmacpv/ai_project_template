@@ -112,19 +112,23 @@ The `tools/` directory is **STRICTLY READ-ONLY** for all agents.
 *   **Do NOT** modify `deserializer.py`, `serializer.py`, etc.
 *   **Reason:** These are the "Means of Production". Modifying them risks breaking the agent's ability to communicate or function.
 
-### 📝 Rule 2: Mandatory Logging
-Every agent must maintain a work log.
+### 📝 Rule 2: Cumulative Logging (NO DATA LOSS)
+Every agent MUST maintain a cumulative work log.
 *   **Location:** `app_docs/ai_logs/`
-*   **Filename:** `<AGENT_PREFIX>_work_log.md` (e.g., `MDA_work_log.md`).
-*   **Mechanism:** The deserializer **OVERWRITES** files.
-*   **Action:** To "append" to the log, you must **read the existing content** from the context, **copy it entirely**, and add your new entry at the bottom.
-*   **Do NOT** output only the new entry, or the history will be deleted.
-*   **Content:** Date, Goal, Actions Taken, Issues, Next Steps.
+*   **Filename:** `<AGENT_PREFIX>_work_log.md`
+*   **THE GOLDEN RULE:** You are FORBIDDEN from outputting only the new entry. 
+*   **Procedure:**
+    1.  Read the entire current content of the log from the context.
+    2.  Keep the existing history exactly as it is.
+    3.  Add the new entry at the BOTTOM of the file.
+    4.  Output the COMPLETE file (Old + New) in one serializable block.
+*   **Penalty:** Any loss of previous log entries is considered a CRITICAL FAILURE of the agent.
 
 ### 📦 Rule 3: Output Serialization
-**MDA** and **FCA** **MUST** use the following format when presenting file content. This allows the user to copy the content and save it to a file using `tools/deserializer.py`.
-
-**CRITICAL:** You must output the code block as **`text`** (raw text), NOT `python`, `markdown`, or `javascript`. This ensures the deserializer parses it correctly without markdown artifacts.
+**MDA** and **FCA** **MUST** consolidate **ALL** file edits for a given turn into **ONE SINGLE** code block.
+*   **Goal:** The user should copy **ONE** block of text to update **ALL** files at once.
+*   **Prohibited:** Do NOT split files into multiple code blocks or multiple messages.
+*   **Format:** Use **`text`** (raw text) block.
 
 **The Standard Serializable Format:**
 
@@ -132,6 +136,12 @@ Every agent must maintain a work log.
 # Project: [Name]; File: [Relative_Path_From_Root]
 [Content]
 ---[END OF FILE: [Relative_Path_From_Root]]---
+
+# Project: [Name]; File: [Relative_Path_From_Root]
+[Content]
+---[END OF FILE: [Relative_Path_From_Root]]---
+
+(...)
 ```
 
 *   **Exceptions:** CLI commands, explanations, or terminal logs do not need this format. Only code that needs to be saved to a file.
