@@ -115,10 +115,11 @@ The `tools/` directory is **STRICTLY READ-ONLY** for all agents.
 ### 📝 Rule 2: Mandatory Logging
 Every agent must maintain a work log.
 *   **Location:** `app_docs/ai_logs/`
-*   **Filename:** `<AGENT_PREFIX>_work_log.md` (e.g., `MDA_work_log.md`, `TEA_work_log.md`).
-*   **Content:**
-    *   Append a new entry for every session/iteration.
-    *   Record: Date, Goal, Actions Taken, Issues Encountered, and Next Steps.
+*   **Filename:** `<AGENT_PREFIX>_work_log.md` (e.g., `MDA_work_log.md`).
+*   **Mechanism:** The deserializer **OVERWRITES** files.
+*   **Action:** To "append" to the log, you must **read the existing content** from the context, **copy it entirely**, and add your new entry at the bottom.
+*   **Do NOT** output only the new entry, or the history will be deleted.
+*   **Content:** Date, Goal, Actions Taken, Issues, Next Steps.
 
 ### 📦 Rule 3: Output Serialization
 **MDA** and **FCA** **MUST** use the following format when presenting file content. This allows the user to copy the content and save it to a file using `tools/deserializer.py`.
@@ -143,3 +144,9 @@ Every agent must maintain a work log.
 Maintain the `VERSION` file (Semantic Versioning: Major.Minor.Patch).
 *   **MDA:** Updates **Major** or **Minor** versions (X.X.0) when adding features or changing architecture. Resets Patch to 0.
 *   **TEA:** Updates **Patch** versions (0.0.X) when performing bug fixes, refactoring, or maintenance.
+
+### 🔒 Rule 6: Template Immutability
+Any directory containing the word "**template**" in its name (e.g., `app_templates`, `code_template`) is a **Golden Source**.
+*   **Rights:** Agents are **OBLIGATED TO USE** content from these folders.
+*   **Restrictions:** Agents are **FORBIDDEN FROM EDITING** these folders.
+*   **Philosophy:** Templates are the standard building blocks. We build *from* them, we do not change them.
