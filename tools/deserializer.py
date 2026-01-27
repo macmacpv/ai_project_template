@@ -14,7 +14,7 @@ and this script splits it up and saves the individual files.
 The Format it expects:
 # Project: Name; File: /path/to/file.txt
 [File Content]
----[END OF FILE: /path/to/file.txt]---
+---[ END OF FILE: /path/to/file.txt ]---
 
 Usage:
 python tools/deserializer.py SERIALIZED_CONTEXT.txt
@@ -55,7 +55,7 @@ def parse_serialized_context(input_file_path):
             file_path = match.group(1).strip()
             start_index = match.end()
             
-            footer_string = f"---[END OF FILE: {file_path}]---"
+            footer_string = f"---[ END OF FILE: {file_path} ]---"
             
             footer_pos = clean_content.find(footer_string, start_index)
             

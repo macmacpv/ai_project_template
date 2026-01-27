@@ -27,7 +27,7 @@ def list_project_files(startpath):
 
     ignore_dirs = {
         '.git', '.venv', '__pycache__', '.vscode', 'node_modules', 
-        'build', 'dist', 'X_Intels', 'X_Repos'
+        'build', 'dist', 'tools', 'X_Intels', 'X_Repos'
     }
     
     ignore_files = {

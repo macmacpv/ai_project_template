@@ -95,7 +95,7 @@ def create_consolidated_context(file_list_path, output_file_path):
 
                     outfile.write(f"# Project: {project_name}; File: {header_path}\n\n")
                     outfile.write(content)
-                    outfile.write(f"\n\n---[END OF FILE: {header_path}]---\n\n")
+                    outfile.write(f"\n\n---[ END OF FILE: {header_path} ]---\n\n")
                     
                     print(f"Processed: {file_path}")
 
