@@ -122,9 +122,9 @@ After ingesting the project context, you must **IMMEDIATELY ASK** the Human Pilo
 ### ⚠️ Rule 1: Iterative Logging
 Each agent must create a new log file for every iteration.
 *   **Location:** `app_docs/ai_logs/`
-*   **Filename Format:** `<AGENT_PREFIX>_log_<YYYY-MM-DD>_<HH-MM>.md`
+*   **Filename Format:** `<AGENT_PREFIX>_log_<YYYY-MM-DD>_<HHMM>.md`
 *   **Content:**
-    *   Date and Time (UTC).
+    *   Actual Date and Time (in UTC).
     *   Iteration Number.
     *   Concise summary of executed actions.
 *   **Restriction:** Files must be short and simple. Do NOT start a cumulative log.
