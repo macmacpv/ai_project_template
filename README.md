@@ -135,6 +135,7 @@ Each agent must create a new log file for every iteration.
 *   **Prohibited:** Do NOT split files into multiple code blocks or multiple messages.
 *   **Format:** Use **`text`** (raw text) block.
 *   **CRITICAL REQUIREMENT:** ALWAYS return the **COMPLETE** content of the file. **NEVER** truncate code or provide partial updates (e.g., "// ... rest of code").
+*   **Nested Code Blocks:** If a file contains a code block (e.g. JSON or others), it MUST be provided separately, outside of the main deserialization block.
 
 **The Standard Serializable Format:**
 
